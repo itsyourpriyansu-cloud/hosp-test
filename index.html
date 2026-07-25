@@ -816,15 +816,17 @@
       return path;
     }
 
-    // Single App Launch Handlers
-    document.querySelectorAll('.launch-btn').forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const path = button.getAttribute('data-url');
-        const port = button.getAttribute('data-port');
+    // App Card & Launch Handlers
+    document.querySelectorAll('.app-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        const btn = card.querySelector('.launch-btn');
+        if (!btn) return;
+        const path = btn.getAttribute('data-url');
+        const port = btn.getAttribute('data-port');
         const targetUrl = getTargetUrl(path, port);
         
-        if (openTarget === '_blank') {
+        if (openTarget === '_blank' || e.ctrlKey || e.metaKey) {
           window.open(targetUrl, '_blank');
         } else {
           window.location.href = targetUrl;
@@ -833,7 +835,8 @@
     });
 
     // Launch All Apps Handler
-    document.getElementById('launchAllBtn').addEventListener('click', () => {
+    document.getElementById('launchAllBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
       const apps = [
         { path: '/opd_amb/', port: '5173' },
         { path: '/opd_pharma/', port: '5174' },

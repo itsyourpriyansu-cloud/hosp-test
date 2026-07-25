@@ -23,7 +23,7 @@ export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster position="top-right" richColors />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Navigate to="/pharmacy" replace />} />
           <Route element={<PharmacyAppShell />}>
