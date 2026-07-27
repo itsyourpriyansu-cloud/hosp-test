@@ -19,7 +19,12 @@ export const AppShell: React.FC = () => {
     '/report-issue',
   ];
 
-  const shouldHideNav = hideNavRoutes.some((route) => location.pathname.includes(route));
+  const isChatSubpage =
+    location.pathname === '/chat/new' ||
+    (location.pathname.startsWith('/chat/') && location.pathname !== '/chat/history');
+
+  const shouldHideNav =
+    hideNavRoutes.some((route) => location.pathname.includes(route)) || isChatSubpage;
 
   return (
     <div className="mobile-shell bg-[#F7F9F8]">

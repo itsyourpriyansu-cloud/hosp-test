@@ -10,5 +10,5 @@ export * from './notification';
 export * from './careCircle';
 export * from './emergency';
 export * from './api';
-
+export * from './careChat';
 

@@ -35,4 +35,20 @@ export const notificationService = {
       300
     );
   },
+
+  // Privacy-safe Care Chat notification helper
+  notifyCareChatMessage: async (conversationId: string) => {
+    const newNotification = {
+      id: `notif-chat-${Date.now()}`,
+      title: 'New message from your care team',
+      body: 'Your Balaji care team has sent an update regarding your request.',
+      category: 'care_chat' as const,
+      timestamp: new Date().toISOString(),
+      isRead: false,
+      deepLink: `/chat/${conversationId}`,
+    };
+
+    localNotifications = [newNotification as any, ...localNotifications];
+    return simulateLatency({ success: true }, 150);
+  },
 };

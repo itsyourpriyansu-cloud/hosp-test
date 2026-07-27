@@ -46,6 +46,12 @@ import { ReportIssue } from '../pages/support/ReportIssue';
 import { CareCirclePage } from '../pages/careCircle/CareCirclePage';
 import { PatientJourneyPage } from '../pages/careCircle/PatientJourneyPage';
 
+import { CareChatHomePage } from '../pages/chat/CareChatHomePage';
+import { StartCareChatPage } from '../pages/chat/StartCareChatPage';
+import { CareChatConversationPage } from '../pages/chat/CareChatConversationPage';
+import { CareChatDetailsPage } from '../pages/chat/CareChatDetailsPage';
+import { CareChatHistoryPage } from '../pages/chat/CareChatHistoryPage';
+
 import { OfflinePage } from '../pages/system/OfflinePage';
 import { SessionExpired } from '../pages/system/SessionExpired';
 import { NotFound } from '../pages/system/NotFound';
@@ -268,6 +274,46 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Notifications />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/chat',
+        element: (
+          <ProtectedRoute>
+            <CareChatHomePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/chat/new',
+        element: (
+          <ProtectedRoute>
+            <StartCareChatPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/chat/history',
+        element: (
+          <ProtectedRoute>
+            <CareChatHistoryPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/chat/:conversationId',
+        element: (
+          <ProtectedRoute>
+            <CareChatConversationPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/chat/:conversationId/details',
+        element: (
+          <ProtectedRoute>
+            <CareChatDetailsPage />
           </ProtectedRoute>
         ),
       },
